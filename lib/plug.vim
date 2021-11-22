@@ -1,5 +1,6 @@
 
 call plug#begin()
+Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
