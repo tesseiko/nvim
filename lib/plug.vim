@@ -9,6 +9,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim'
+Plug 'williamboman/nvim-lsp-installer'
 call plug#end()
 
-colorscheme dracula

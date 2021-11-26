@@ -35,3 +35,4 @@ set mouse=a
 set undodir=~/.config/nvim/undodir
 set tags=./tags;
 
+colorscheme dracula
