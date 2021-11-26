@@ -8,6 +8,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 colorscheme dracula
