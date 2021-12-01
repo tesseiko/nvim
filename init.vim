@@ -1,4 +1,19 @@
-"BASIC
+" INDEX
+"
+" lib/comments.vim
+" lib/completions.vim
+" lib/plug.vim
+" lib/remaps.vim
+" lib/sets.vim
+" lib/statusline.vim
+"
+" lib_plug/floaterm.vim
+" lib_plug/gitgutter.vim
+" lib_plug/lsp.vim
+" lib_plug/servers.lua
+" lib_plug/telescope.vim
+" lib_plug/vimwiki.vim
+"
 
 set nocompatible
 let mapleader=" "
