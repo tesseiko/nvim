@@ -1,18 +1,5 @@
 "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-"" gopls
-"lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
-"" bash-language-server
-"lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-"" installed using yarn global add yaml-language-server
-"lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-"" ansible-language-server
-"lua require'lspconfig'.ansiblels.setup{ on_attach=require'completion'.on_attach }
-"" typescript-language-server
-"lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-"" ccls
-"lua require'lspconfig'.ccls.setup{ on_attach=require'completion'.on_attach }
-
 "nnoremap <silent> <leader>gd :lua vim.lsp.buf.definition()<cr>
 lua << EOF
 
@@ -75,4 +62,30 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- nvim_lsp['sumneko_lua'].setup {
+-- 	settings = {
+-- 		-- Insert your settings here
+-- 		Lua = {
+-- 			runtime = {
+-- 				version = 'Lua 5.3',
+-- 				path = {
+-- 					'?.lua',
+-- 					'?/init.lua',
+-- 					vim.fn.expand'~/.luarocks/share/lua/5.3/?.lua',
+-- 					vim.fn.expand'~/.luarocks/share/lua/5.3/?/init.lua',
+-- 					'/usr/share/5.3/?.lua',
+-- 					'/usr/share/lua/5.3/?/init.lua'
+-- 				}
+-- 			},
+-- 			workspace = {
+-- 				library = {
+-- 					[vim.fn.expand'~/.luarocks/share/lua/5.3'] = true,
+-- 					['/usr/share/lua/5.3'] = true
+-- 				}
+-- 			}
+-- 		} 
+-- 	}
+-- }
+
 EOF
