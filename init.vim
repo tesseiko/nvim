@@ -32,6 +32,7 @@ command! -nargs=1 CreateSession :mksession <args>.vim | !ln -sf $(realpath <args
 command! -nargs=1 SaveSession :mksession <args>_tmp.vim |!mv <args>_tmp.vim <args>.vim && ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
 command! -nargs=1 Commit :cd %:p:h |!git add --all && git commit -m <args>
 command! Push :cd %:p:h |!git push
+command! Pull :cd %:p:h |!git pull
 
 command! OpenGreek :!st -f"Inconsolata LGC:style=Regular:size=12" -e nvim %
 command! MakeTags !ctags -R .
