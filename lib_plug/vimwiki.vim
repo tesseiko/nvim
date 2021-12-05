@@ -17,7 +17,8 @@
 "            \ 'list_margin': 0,
 "            \ 'links_space_char' : '_',
 "            \}]
-
+autocmd filetype vimwiki	set textwidth=72
+ 
 " github theme
 " used by vimwiki html generator (pandas)
 let g:vimwiki_list = [{
