@@ -30,7 +30,17 @@ augroup END
 
 command! -nargs=1 CreateSession :mksession <args>.vim | !ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
 command! -nargs=1 SaveSession :mksession <args>_tmp.vim |!mv <args>_tmp.vim <args>.vim && ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
-command! -nargs=1 Commit :lcd %:p:h |!git add --all && git commit -m <args>
+
+" Some git helpers
+function Commit(...)
+	let msgStr = []
+	for msg in a:000
+		:call add(msgStr, "-m ")
+		:call add(msgStr, msg)
+	endfor
+	lcd %:p:h |!git add --all && git commit -m a:000
+endfunction
+
 command! Push :lcd %:p:h |!git push
 command! Pull :lcd %:p:h |!git pull
 command! Add :lcd %:p:h |!git add %
