@@ -24,7 +24,7 @@ nnoremap <silent> <leader>? :tabnew ~/vimwiki/src/vim.md<cr>
 nnoremap <silent> <leader>rc :tabnew ~/.config/nvim/init.vim<cr>
 nnoremap <silent> <C-n> :bnext<cr>
 nnoremap <silent> <C-p> :bprev<cr>
-nnoremap <silent> <C-q> :bd<cr>
+nnoremap <silent> <C-q> :b#<bar>bd#<cr>
 
 " etc
 nnoremap <leader>m i<@><esc> 
