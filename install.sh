@@ -27,9 +27,10 @@ if [ $# -eq 1 ]; then
 		echo "$0 [help|install-ubuntu]"
 		exit 0
 	fi
+elif [ $# -eq 0 ]; then
+	local_install
 else
 	echo "$0 [help|install-ubuntu]"
 	exit 0
 fi
 
-local_install
