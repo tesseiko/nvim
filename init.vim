@@ -14,6 +14,7 @@
 " lib_plug/telescope.vim
 " lib_plug/vimwiki.vim
 "
+" TODO fix cprev and cnext remaps - confilict with lsp remaps
 
 set nocompatible
 let mapleader=" "
@@ -40,12 +41,13 @@ function Commit(...)
 	" :echom msgStr
 	lcd %:p:h |!git add --all
 	:exe '!git commit'  msgStr
+	lcd -
 endfunction
 
-command! Push :lcd %:p:h |!git push
-command! Pull :lcd %:p:h |!git pull
-command! Add :lcd %:p:h |!git add %
-command! Tileei :lcd %:p:h |!git remote update && git status
+command! Push :lcd %:p:h |!git push <cr>: lcd -
+command! Pull :lcd %:p:h |!git pull <cr>: lcd -
+command! Add :lcd %:p:h |!git add % <cr>: lcd -
+command! Tileei :lcd %:p:h |!git remote update && git status <cr>: lcd -
 
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
