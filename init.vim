@@ -44,10 +44,10 @@ function Commit(...)
 	lcd -
 endfunction
 
-command! Push :lcd %:p:h |!git push <cr>: lcd -
-command! Pull :lcd %:p:h |!git pull <cr>: lcd -
-command! Add :lcd %:p:h |!git add % <cr>: lcd -
-command! Tileei :lcd %:p:h |!git remote update && git status <cr>: lcd -
+command! Push lcd %:p:h |exe "!git push" | lcd -
+command! Pull lcd %:p:h |exe "!git pull" | lcd -
+command! Add lcd %:p:h |exe "!git add %" | lcd -
+command! Tileei lcd %:p:h |exe "!git remote update && git status" | lcd -
 
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
