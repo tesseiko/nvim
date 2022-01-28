@@ -49,6 +49,12 @@ command! Pull lcd %:p:h |exe "!git pull" | lcd -
 command! Add lcd %:p:h |exe "!git add %" | lcd -
 command! Tileei lcd %:p:h |exe "!git remote update && git status" | lcd -
 
+function SingleCommit(msg)
+	Add
+	call Commit(a:msg)
+endfunction
+
+command! GUrd call SingleCommit("Update README.md")
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
 " use g^] to see ambiguous tags
