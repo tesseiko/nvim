@@ -49,7 +49,7 @@ function CdGit()
 	cd %:p:h
 	let root_dir= system('git rev-parse --show-toplevel')
 	echom root_dir
-	cd root_dir
+	exe 'cd' root_dir
 endfunction
 
 command! Push lcd %:p:h |exe "!git push" | lcd -
@@ -63,7 +63,6 @@ function SingleCommit(msg)
 	call Commit(a:msg)
 endfunction
 
-command! GUrd call SingleCommit("Update README.md")
 command! GUpd call SingleCommit("%:t")
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
