@@ -4,6 +4,7 @@
 " lib/completions.vim
 " lib/plug.vim
 " lib/remaps.vim
+" lib/greek_keys.vim
 " lib/sets.vim
 " lib/statusline.vim
 "
