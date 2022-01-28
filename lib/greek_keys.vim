@@ -24,7 +24,7 @@ map β b
 map ψ n
 map μ m
 
-ap Α A
+map Α A
 map Σ W
 map Ε E
 map Ρ R
