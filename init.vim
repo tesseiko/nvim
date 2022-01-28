@@ -64,7 +64,7 @@ function SingleCommit(msg)
 endfunction
 
 command! GUrd call SingleCommit("Update README.md")
-command! GUpd call SingleCommit(%:t)
+command! GUpd call SingleCommit("%:t")
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
 " use g^] to see ambiguous tags
