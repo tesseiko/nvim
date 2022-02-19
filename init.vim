@@ -25,6 +25,8 @@ autocmd filetype vim	nnoremap <buffer> <leader>b :w<cr>:so<space>%<cr>
 set makeprg=make\ -C\ ../build\ -j4
 " autocmd filetype python	nnoreap <buffer> <leader>b :w<cr>:!python %<cr>
 
+nnoremap <leader>b :w<cr>:!tmake<cr>
+
 augroup project
 	autocmd!
 	autocmd BufRead,BufNewFile *.h,*.c set filetype=c
@@ -63,7 +65,7 @@ function SingleCommit(msg)
 	call Commit(a:msg)
 endfunction
 
-command! GUpd call SingleCommit("%:t")
+command! GUpd call SingleCommit("Update %:t")
 command! MakeTags !ctags -R .
 " use ^] to jump to tag
 " use g^] to see ambiguous tags
