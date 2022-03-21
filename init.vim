@@ -25,7 +25,7 @@ autocmd filetype vim	nnoremap <buffer> <leader>b :w<cr>:so<space>%<cr>
 set makeprg=make\ -C\ ../build\ -j4
 " autocmd filetype python	nnoreap <buffer> <leader>b :w<cr>:!python %<cr>
 
-nnoremap <leader>b :w<cr>:!tmake<cr>
+nnoremap <leader>b :w<cr>:!tmake bear<cr>
 
 augroup project
 	autocmd!

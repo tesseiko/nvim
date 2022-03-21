@@ -35,6 +35,7 @@ autocmd filetype typescriptreact 	inoremap <buffer>  <leader><tab> <esc>/!@#<cr>
 autocmd filetype vim	inoremap <buffer> <leader><tab> <esc>f@cl
 autocmd filetype vim	inoremap <buffer> " "
 autocmd filetype vim	nnoremap <buffer> <leader>n onnoremap<space>
+autocmd filetype vim	nnoremap <buffer> <cr> gf
 autocmd filetype vim	nnoremap <buffer> <leader>i oinoremap<space>
 autocmd filetype vim	nnoremap <buffer> <leader>N oautocmd<space>filetype<space>@<tab>nnoremap<space><lt>buffer><space>@<esc>F@cw
 autocmd filetype vim	nnoremap <buffer> <leader>I oautocmd<space>filetype<space>@<tab>inoremap<space><lt>buffer><space>@<esc>F@cw

@@ -18,6 +18,7 @@ inoremap <C-l> <right>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-h> <left>
+inoremap <C-M-e> € 
 
 " file navigation
 nnoremap <silent> <leader>? :tabnew ~/vimwiki/src/vim.md<cr>
@@ -31,8 +32,8 @@ nnoremap <leader>m i<@><esc>
 nnoremap <leader>M /<@><cr>
 nnoremap <leader><tab> /<@><cr>3cl
 nnoremap <silent> <leader>h :tabprev<cr>
-map <silent> <F9> :tabprev<cr>
-map <silent> <F10> :-tabmove<cr>
+map <silent> <leader><F9> :tabprev<cr>
+map <silent> <leader><F10> :-tabmove<cr>
 nnoremap <silent> <leader>l :tabnext<cr>
 map <silent> <F12> :tabnext<cr>
 map <silent> <F11> :+tabmove<cr>
@@ -50,6 +51,10 @@ nnoremap <silent><C-k> :cprev<cr>
 nnoremap <silent><C-j> :cnext<cr>
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <esc>:w<cr>
+nnoremap <leader>dp :diffput<cr>
+nnoremap <leader>dg :diffget<cr>
+nnoremap <leader>dh :diffget 1<cr>
+nnoremap <leader>dl :diffget 3<cr>
 
 " surround current line with empty lines and reverse
 nnoremap <leader>s O<esc>jo<esc>k
