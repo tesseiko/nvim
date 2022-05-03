@@ -55,6 +55,7 @@ nnoremap <leader>dp :diffput<cr>
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dh :diffget 1<cr>
 nnoremap <leader>dl :diffget 3<cr>
+nnoremap <silent><leader>lq :LspStop<cr>
 
 " surround current line with empty lines and reverse
 nnoremap <leader>s O<esc>jo<esc>k
