@@ -4,6 +4,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J m`J``
 
+vnoremap <leader>i <C-a>
+vnoremap g<leader>i g<C-a>
+nnoremap <leader>i <C-a>
+
 " undo breakpoints
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -31,12 +35,8 @@ nnoremap <silent> <C-q> :b#<bar>bd#<cr>
 nnoremap <leader>m i<@><esc> 
 nnoremap <leader>M /<@><cr>
 nnoremap <leader><tab> /<@><cr>3cl
-nnoremap <silent> <leader>h :tabprev<cr>
-map <silent> <leader><F9> :tabprev<cr>
-map <silent> <leader><F10> :-tabmove<cr>
-nnoremap <silent> <leader>l :tabnext<cr>
-map <silent> <F12> :tabnext<cr>
-map <silent> <F11> :+tabmove<cr>
+nnoremap <silent> <leader><C-h> :tabprev<cr>
+nnoremap <silent> <leader><C-l> :tabnext<cr>
 nnoremap <leader>d dlp
 nnoremap - <C-W><
 nnoremap + <C-W>>

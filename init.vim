@@ -14,6 +14,7 @@
 " lib_plug/servers.lua
 " lib_plug/telescope.vim
 " lib_plug/vimwiki.vim
+" lib_plug/harpoon.vim
 "
 " TODO fix cprev and cnext remaps - confilict with lsp remaps
 
@@ -27,10 +28,10 @@ set makeprg=make\ -C\ ../build\ -j4
 
 nnoremap <leader>b :w<cr>:!tmake bear<cr>
 
-augroup project
-	autocmd!
-	autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-augroup END
+" augroup project
+" 	autocmd!
+" 	autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+" augroup END
 
 command! -nargs=1 CreateSession :mksession <args>.vim | !ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
 command! -nargs=1 SaveSession :mksession <args>_tmp.vim |!mv <args>_tmp.vim <args>.vim && ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim

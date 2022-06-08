@@ -12,5 +12,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nvim-lua/completion-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'github/copilot.vim'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
