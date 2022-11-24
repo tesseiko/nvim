@@ -21,8 +21,9 @@ map χ x
 map ψ c
 map ω v
 map β b
-map ψ n
+map ψ c
 map μ m
+map ν n
 
 map Α A
 map Σ W
@@ -47,6 +48,11 @@ map Χ X
 map Ψ C
 map Ω V
 map Β B
-map Ψ N
+map Ψ C
 map Μ M
+map Ν Ν
 
+nmap γ;ιπ gqip
+nmap ψς cw
+nmap ψις ciw
+nmap δς dw
