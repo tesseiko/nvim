@@ -18,7 +18,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set splitright
-set noexpandtab
+set expandtab
 set nowrap
 set colorcolumn=100
 highlight ColorColumn ctermbg=darkgray
@@ -33,6 +33,7 @@ set cmdheight=2
 set updatetime=50
 set mouse=a
 
+let g:tex_flavor = 'latex'
 set undodir=~/.config/nvim/undodir
 set tags=./tags;
 
