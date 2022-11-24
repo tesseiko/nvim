@@ -32,7 +32,7 @@ let g:vimwiki_list = [{
             \ 'links_space_char' : '_',
             \}]
 
-let g:vimwiki_folding='list'
+let g:vimwiki_folding='expr'
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 
