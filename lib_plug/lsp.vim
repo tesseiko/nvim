@@ -57,6 +57,22 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
   }
+
+require'lspconfig'.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+		pyflakes = {enabled = false},
+        pylint = {enabled = false},
+        pycodestyle = {enabled = false},
+        -- pycodestyle = {
+        --   ignore = {'W391'},
+        --   maxLineLength = 120
+        -- }
+      }
+    }
+  }
+}
 end
 
 EOF
