@@ -33,9 +33,6 @@ nnoremap <leader>b :w<cr>:!tmake bear<cr>
 " 	autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 " augroup END
 
-command! -nargs=1 CreateSession :mksession <args>.vim | !ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
-command! -nargs=1 SaveSession :mksession <args>_tmp.vim |!mv <args>_tmp.vim <args>.vim && ln -sf $(realpath <args>.vim) ~/.config/vim/sessions/<args>.vim
-
 " Some git helpers
 function Commit(...)
 	let msgStr = ""
