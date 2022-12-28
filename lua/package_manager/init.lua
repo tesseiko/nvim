@@ -52,6 +52,7 @@ require('packer').startup(function(use)
 	}
 
 	use ('theprimeagen/harpoon')
+	use 'tpope/vim-fugitive'
 	if is_bootstrap then
 		require('packer').sync()
 	end
