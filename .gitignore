@@ -2,3 +2,4 @@ undodir/*
 plugged/*
 .netrwhist
 lib_plug/servers.lua
+plugin/*

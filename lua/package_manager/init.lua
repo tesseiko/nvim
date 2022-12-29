@@ -19,25 +19,32 @@ require('packer').startup(function(use)
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
 
-	use { -- LSP Configuration & Plugins
-	'neovim/nvim-lspconfig',
-	requires = {
-		-- Automatically install LSPs to stdpath for neovim
-		'williamboman/mason.nvim',
-		'williamboman/mason-lspconfig.nvim',
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
 
-		-- Useful status updates for LSP
-		'j-hui/fidget.nvim',
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'saadparwaiz1/cmp_luasnip'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'hrsh7th/cmp-nvim-lua'},
+            {'folke/neodev.nvim'},
 
-		-- Additional lua configuration, makes nvim stuff amazing
-		'folke/neodev.nvim',
-		},
+			-- Snippets
+			{'L3MON4D3/LuaSnip'},
+			{'rafamadriz/friendly-snippets'},
+		}
 	}
-
-	use { -- Autocompletion
-		'hrsh7th/nvim-cmp',
-		requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-	}
+	-- use { -- Autocompletion
+	-- 	'hrsh7th/nvim-cmp',
+	-- 	requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+	-- }
 
 	use { -- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
@@ -53,6 +60,9 @@ require('packer').startup(function(use)
 
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
+
+	use 'dracula/vim'
+
 	if is_bootstrap then
 		require('packer').sync()
 	end
