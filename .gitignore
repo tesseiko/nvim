@@ -1,5 +1,4 @@
+plugin/packer_compiled.lua
 undodir/*
-plugged/*
 .netrwhist
-lib_plug/servers.lua
-plugin/*
+
