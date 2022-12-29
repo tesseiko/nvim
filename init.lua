@@ -5,4 +5,3 @@ require("remaps")
 -- vim.cmd [[colorscheme dracula]]
 require("settings")
 
-
