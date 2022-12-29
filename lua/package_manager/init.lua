@@ -62,6 +62,8 @@ require('packer').startup(function(use)
 
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
+    use('vimwiki/vimwiki')
+    use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
 
 	use 'dracula/vim'
 
