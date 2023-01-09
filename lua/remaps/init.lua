@@ -27,7 +27,7 @@ inoremap <C-M-e> €
 
 " file navigation
 nnoremap <silent> <leader>? :tabnew ~/vimwiki/src/vim.md<cr>
-nnoremap <silent> <leader>rc :tabnew ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>rc :tabnew ~/.config/nvim/init.lua<cr>
 nnoremap <silent> <C-n> :bnext<cr>
 nnoremap <silent> <C-p> :bprev<cr>
 nnoremap <silent> <C-q> :b#<bar>bd#<cr>
