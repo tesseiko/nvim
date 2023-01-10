@@ -64,6 +64,7 @@ require('packer').startup(function(use)
 	use 'tpope/vim-fugitive'
     use('vimwiki/vimwiki')
     use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
+    use {'akinsho/toggleterm.nvim'}
 
 	use 'dracula/vim'
 
