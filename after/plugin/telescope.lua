@@ -14,6 +14,7 @@ vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
 vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ls', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>la', builtin.lsp_dynamic_workspace_symbols, {})
+vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
 -- vim.keymap.set('n', '<leader>ld', builtin.lsp_document_diagnostics, {})
 vim.keymap.set('n', 'gr', builtin.lsp_references, {})
 
