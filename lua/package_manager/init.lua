@@ -67,8 +67,27 @@ require('packer').startup(function(use)
 
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
-    use('vimwiki/vimwiki')
-    use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
+
+    use {
+        'vimwiki/vimwiki',
+        config = function()
+            vim.g.vimwiki_list = {
+                {
+                    path = '~/vimwiki/src/',
+                    syntax = 'markdown',
+                    ext  = '.md',
+                }
+            }
+            vim.g.vimwiki_ext2syntax = {
+                ['.md'] = 'markdown',
+                ['.markdown'] = 'markdown',
+                ['.mdown'] = 'markdown',
+            }
+            vim.g.vimwiki_folding = 'syntax'
+        end
+    }
+
+use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
     use {'akinsho/toggleterm.nvim'}
 
 	use 'dracula/vim'
