@@ -25,6 +25,11 @@ inoremap <C-k> <up>
 inoremap <C-h> <left>
 inoremap <C-M-e> € 
 
+nnoremap <leader>y "py
+nnoremap <leader>p "pp
+nnoremap <leader>P "pP
+nnoremap <leader>d "_d
+
 " file navigation
 nnoremap <silent> <leader>? :tabnew ~/vimwiki/src/vim.md<cr>
 nnoremap <silent> <leader>rc :tabnew ~/.config/nvim/init.lua<cr>
@@ -38,7 +43,6 @@ nnoremap <leader>M /<@><cr>
 nnoremap <leader><tab> /<@><cr>3cl
 nnoremap <silent> <leader><C-h> :tabprev<cr>
 nnoremap <silent> <leader><C-l> :tabnext<cr>
-nnoremap <leader>d dlp
 nnoremap - <C-W><
 nnoremap + <C-W>>
 nnoremap <C--> <C-W>-
@@ -52,10 +56,12 @@ nnoremap <silent><C-k> :cprev<cr>
 nnoremap <silent><C-j> :cnext<cr>
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <esc>:w<cr>
+if &diff
 nnoremap <leader>dp :diffput<cr>
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dh :diffget 1<cr>
 nnoremap <leader>dl :diffget 3<cr>
+endif
 nnoremap <silent><leader>lq :LspStop<cr>
 
 " surround current line with empty lines and reverse

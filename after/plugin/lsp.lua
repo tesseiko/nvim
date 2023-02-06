@@ -1,5 +1,6 @@
 
 local lsp = require('lsp-zero')
+local nvimlsp = require('lspconfig')
 lsp.preset('recommended')
 
 -- Fix Undefined global 'vim'
@@ -29,6 +30,16 @@ lsp.configure('pylsp', {
   }
 })
 
+local pid = vim.fn.getpid()
+-- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
+local omnisharp_bin = "/home/lef/.local/share/nvim/mason/packages/omnisharp-mono/run"
+
+lsp.configure ( 'omnisharp', {
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) };
+    root_dir = nvimlsp.util.root_pattern("*.csproj","*.sln");
+    ...
+})
+
 lsp.on_attach(function (client, bufnr)
     local opts = {buffer = bufnr, remap = false}
 
@@ -50,6 +61,7 @@ lsp.on_attach(function (client, bufnr)
 
 end)
 
+lsp.nvim_workspace();
 lsp.setup()
 
 vim.diagnostic.config({

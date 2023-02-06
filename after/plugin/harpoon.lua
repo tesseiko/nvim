@@ -15,5 +15,5 @@ vim.keymap.set('n', '<leader>2', function() ui.nav_file(2) end)
 vim.keymap.set('n', '<leader>3', function() ui.nav_file(3) end)
 vim.keymap.set('n', '<leader>4', function() ui.nav_file(4) end)
 
-vim.keymap.set('n', '<leader>n', ui.nav_next)
-vim.keymap.set('n', '<leader>p', ui.nav_prev)
+-- vim.keymap.set('n', '<leader>n', ui.nav_next)
+-- vim.keymap.set('n', '<leader>p', ui.nav_prev)

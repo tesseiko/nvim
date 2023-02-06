@@ -60,6 +60,11 @@ require('packer').startup(function(use)
 		after = 'nvim-treesitter',
 	}
 
+	use { -- Additional text objects via treesitter
+		'nvim-treesitter/nvim-treesitter-angular',
+		after = 'nvim-treesitter',
+	}
+
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
     use('vimwiki/vimwiki')
