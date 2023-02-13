@@ -5,4 +5,5 @@ require("remaps")
 require("dev_tools")
 -- vim.cmd [[colorscheme dracula]]
 require("settings")
+require("desktop")
 
