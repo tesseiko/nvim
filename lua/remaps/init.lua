@@ -38,15 +38,14 @@ nnoremap <silent> <C-p> :bprev<cr>
 nnoremap <silent> <C-q> :b#<bar>bd#<cr>
 
 " etc
-nnoremap <leader>m i<@><esc> 
 nnoremap <leader>M /<@><cr>
 nnoremap <leader><tab> /<@><cr>3cl
 nnoremap <silent> <leader><C-h> :tabprev<cr>
 nnoremap <silent> <leader><C-l> :tabnext<cr>
 nnoremap - <C-W><
 nnoremap + <C-W>>
-nnoremap <C--> <C-W>-
-nnoremap <C-+> <C-W>+
+"nnoremap <C--> <C-W>-
+"nnnoremap <C-+> <C-W>+
 inoremap :w<cr> <esc>:w<cr>
 tnoremap <esc><esc> <C-\><C-n>
 tnoremap <C-w> <C-\><C-n><C-w>
@@ -67,6 +66,7 @@ nnoremap <silent><leader>lq :LspStop<cr>
 " surround current line with empty lines and reverse
 nnoremap <leader>s O<esc>jo<esc>k
 nnoremap <leader>S kddjddk
+
 
 ]])
 

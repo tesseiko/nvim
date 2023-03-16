@@ -20,6 +20,8 @@ vnoremap <leader>" hdi""<esc>Pldlp
 vnoremap <leader>' hdi''<esc>Pldlp
 vnoremap <leader>{ hdi{}<esc>Pldlp
 
+vnoremap <leader><c-b> hdi{}<esc>Pldlp%i\textbf<esc>
+
 " advanced completions
 autocmd filetype html 	inoremap <buffer> < <><left>
 autocmd filetype html 	noremap <buffer> <silent> <esc> <esc>:wa<cr>

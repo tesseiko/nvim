@@ -26,6 +26,7 @@ set foldmethod=syntax
 set foldlevelstart=30
 hi Folded ctermbg=0
 set smartindent
+set formatoptions+=actw
 set breakindent
 set tabstop=4
 set softtabstop=4

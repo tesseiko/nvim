@@ -20,7 +20,16 @@ require('packer').startup(function(use)
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
+    use {
+        'phaazon/mind.nvim',
+        branch = 'v2.2',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require'mind'.setup()
+        end
+    }
 
+    use {'stevearc/dressing.nvim'}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
@@ -68,10 +77,23 @@ require('packer').startup(function(use)
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
 
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+    }
+
     use { 'vimwiki/vimwiki' }
-use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
+    use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
     use {'akinsho/toggleterm.nvim'}
 
+    use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
+    use({
+        "kyazdani42/nvim-tree.lua",
+        requires = {
+            "kyazdani42/nvim-web-devicons", -- optional, for file icons
+        },
+    })
 	use 'dracula/vim'
 
 	if is_bootstrap then
