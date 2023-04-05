@@ -74,6 +74,8 @@ require('packer').startup(function(use)
 		after = 'nvim-treesitter',
 	}
 
+    use("nvim-treesitter/nvim-treesitter-context");
+
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
 
@@ -94,7 +96,7 @@ require('packer').startup(function(use)
             "kyazdani42/nvim-web-devicons", -- optional, for file icons
         },
     })
-	use 'dracula/vim'
+    use 'Mofiqul/dracula.nvim'
 
 	if is_bootstrap then
 		require('packer').sync()
