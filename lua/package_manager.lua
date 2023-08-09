@@ -29,6 +29,7 @@ require('packer').startup(function(use)
         end
     }
 
+    use {'junegunn/goyo.vim'}
     use {'stevearc/dressing.nvim'}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
