@@ -1,12 +1,13 @@
 
-require("telescope").load_extension('harpoon')
+local telescope = require("telescope")
+telescope.load_extension('harpoon')
 
 local opts = { noremap=true, silent=true }
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
 vim.keymap.set('n', '<leader>he', '<cmd> lua require("harpoon.tmux").gotoTerminal("build")<cr>', opts)
-vim.keymap.set('n', '<leader>hr', '<cmd> lua require("harpoon.cmd-ui").toggle_quick_menu()<cr>', opts)
+vim.keymap.set('n', '<leader>hr', telescope.extensions.harpoon.marks, opts)
 vim.keymap.set('n', '<leader>hq', ui.toggle_quick_menu)
 vim.keymap.set('n', '<leader>hw', mark.add_file)
 

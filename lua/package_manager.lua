@@ -98,6 +98,7 @@ require('packer').startup(function(use)
         },
     })
     use 'Mofiqul/dracula.nvim'
+    use 'rcarriga/nvim-notify'
 
 	if is_bootstrap then
 		require('packer').sync()
