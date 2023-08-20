@@ -70,7 +70,15 @@ function SmartBuild()
             jucer_file = lala:read()
             lala:close()
             notif("Resaving Projucer")
-            os.execute('xargs Projucer --resave '..jucer_file)
+            local job_options = {
+                cwd = dir,
+                stderr_buffered = true,
+                on_stdout = stdio_callback,
+                on_stderr = stderr_callback,
+                on_exit = SmartBuild
+            }
+            vim.fn.jobstart('Projucer --resave '..jucer_file , job_options)
+            return
         end
         os.execute("ln -sf "..dir.."/Builds/LinuxMakefile/compile_commands.json "..dir.."/Source/compile_commands.json")
         -- Ready to build
