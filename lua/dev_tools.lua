@@ -8,9 +8,6 @@ vim.keymap.set('n', '<leader>b', function ()
 
 local notif = require("notify")
 
-local build_command = ""
-local make_options = "-j4"
-
 local function stdio_callback(jobid, data, event)
     if data == nil then
         notif("null data")
@@ -39,6 +36,9 @@ local function on_exit_callback(jobid, exit_code, event)
 end
 
 function SmartBuild()
+
+    local build_command = ""
+    local make_options = "-j4"
 
     local pwd_cmd=io.popen("pwd")
     if pwd_cmd == nil then
@@ -82,10 +82,10 @@ function SmartBuild()
         end
         os.execute("ln -sf "..dir.."/Builds/LinuxMakefile/compile_commands.json "..dir.."/Source/compile_commands.json")
         -- Ready to build
-        if os.execute('[ -f /bin/g++-10 ]') == 0 then
-            make_options=make_options.." CXX=/bin/g++-10"
-        elseif os.execute('[ -f /bin/g++-11 ]') == 0 then
+        if os.execute('[ -f /bin/g++-11 ]') == 0 then
             make_options=make_options.." CXX=/bin/g++-11"
+        elseif os.execute('[ -f /bin/g++-10 ]') == 0 then
+            make_options=make_options.." CXX=/bin/g++-10"
         end
         build_command="make "..make_options
         dir = dir..'/Builds/LinuxMakefile'
