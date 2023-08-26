@@ -8,14 +8,6 @@ vim.keymap.set('n', '<leader>b', function ()
 
 local notif = require("notify")
 
-local function stdio_callback(jobid, data, event)
-    if data == nil then
-        notif("null data")
-        return
-    end
-    notif(data, "info", {title = build_command})
-end
-
 local function stderr_callback(jobid, data, event)
     if data == nil then
         notif("null data")
@@ -40,6 +32,8 @@ function SmartBuild()
     local build_command = ""
     local make_options = "-j4"
 
+    local doBear = false
+
     local pwd_cmd=io.popen("pwd")
     if pwd_cmd == nil then
         notif("fatal error, cannot execute pwd", "error")
@@ -49,15 +43,21 @@ function SmartBuild()
     pwd_cmd:close()
     local prefix = ""
     if os.execute('bear --version > /dev/null') == 0 then
-        prefix="bear -- "
+        doBear = true
     end
 
     if os.execute('[ -f platformio.ini ]') == 0 then
         notif("Start building with platformio")
         build_command = "platformio run"
+        if os.execute('[ -f compile_commands.json ]') == 0 then
+            doBear = false
+        end
     elseif os.execute('[ -f Makefile ]') == 0 then
         notif("Start building with Makefile")
         build_command = "make "..make_options
+        if os.execute('[ -f compile_commands.json ]') == 0 then
+            doBear = false
+        end
     elseif os.execute('[ -f *.jucer ]') == 0 then
         notif("juce framework detected")
         if os.execute('[ ! -d Builds/LinuxMakefile ]') == 0 then
@@ -70,6 +70,16 @@ function SmartBuild()
             jucer_file = lala:read()
             lala:close()
             notif("Resaving Projucer")
+
+            local projucerCMD = 'Projucer --resave '..jucer_file
+            local function stdio_callback(jobid, data, event)
+                if data == nil then
+                    notif("null data")
+                    return
+                end
+                notif(data, "info", {title = projucerCMD})
+            end
+
             local job_options = {
                 cwd = dir,
                 stderr_buffered = true,
@@ -77,10 +87,14 @@ function SmartBuild()
                 on_stderr = stderr_callback,
                 on_exit = SmartBuild
             }
-            vim.fn.jobstart('Projucer --resave '..jucer_file , job_options)
+            vim.fn.jobstart(projucerCMD, job_options)
             return
         end
-        os.execute("ln -sf "..dir.."/Builds/LinuxMakefile/compile_commands.json "..dir.."/Source/compile_commands.json")
+        if os.execute('[ -f Builds/LinuxMakefile/compile_commands.json ]') == 0 then
+            doBear = false
+        else
+            os.execute("ln -sf "..dir.."/Builds/LinuxMakefile/compile_commands.json "..dir.."/Source/compile_commands.json")
+        end
         -- Ready to build
         if os.execute('[ -f /bin/g++-11 ]') == 0 then
             make_options=make_options.." CXX=/bin/g++-11"
@@ -92,6 +106,7 @@ function SmartBuild()
         -- cd $DIR/Builds/LinuxMakefile
         -- prefix = 'cd '..dir..'/Builds/LinuxMakefile; '..prefix
     elseif os.execute('[ -f *.tex ]') == 0 then
+        doBear = false
         os.execute('mkdir -p build')
         notif("Start building with pdflatex")
 
@@ -117,7 +132,18 @@ function SmartBuild()
     end
 
     -- run build job
+    if doBear then
+        prefix = "bear -- "..prefix
+    end
     build_command = prefix..build_command
+    local function stdio_callback(jobid, data, event)
+        if data == nil then
+            notif("null data")
+            return
+        end
+        notif(data, "info", {title = build_command})
+    end
+
     local job_options = {
         cwd = dir,
         stderr_buffered = true,
