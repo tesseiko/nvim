@@ -23,3 +23,5 @@
       dotfiles = true,
     },
   })
+
+vim.keymap.set('n', '<leader>E', [[:NvimTreeToggle<cr>]], {silent = true})
