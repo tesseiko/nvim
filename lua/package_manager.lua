@@ -99,6 +99,7 @@ require('packer').startup(function(use)
     })
     use 'Mofiqul/dracula.nvim'
     use 'rcarriga/nvim-notify'
+    use 'simrat39/symbols-outline.nvim'
 
 	if is_bootstrap then
 		require('packer').sync()
