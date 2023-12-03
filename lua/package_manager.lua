@@ -28,7 +28,7 @@ require('packer').startup(function(use)
             require'mind'.setup()
         end
     }
-
+    use 'norcalli/nvim-colorizer.lua'
     use {'junegunn/goyo.vim'}
     use {'stevearc/dressing.nvim'}
 	use {

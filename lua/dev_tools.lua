@@ -7,16 +7,19 @@ vim.keymap.set('n', '<leader>b', function ()
     io.popen("tmake bear") end)
 
 local notif = require("notify")
+local error_buffer = nil;
 
 local function stderr_callback(jobid, data, event)
     if data == nil then
         notif("null data")
         return
     end
-    local error_buffer = vim.api.nvim_create_buf(true, true)
-    local tm = tostring(os.time())
-    vim.api.nvim_buf_set_name(error_buffer, "Build Errors "..tm)
-    vim.api.nvim_buf_set_lines(error_buffer, 0, 0, false, data)
+    if error_buffer == nil then
+        error_buffer = vim.api.nvim_create_buf(true, true)
+        vim.api.nvim_buf_set_name(error_buffer, "Build Messages")
+    end
+    vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, data)
+    vim.cmd('buffer ' .. error_buffer)
 end
 
 local function on_exit_callback(jobid, exit_code, event)
