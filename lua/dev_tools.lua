@@ -12,10 +12,14 @@ local error_win = nil;
 
 local function open_error_win()
     if error_buffer == nil then
-        return;
+        error_buffer = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_buf_set_name(error_buffer, "Build Messages")
+        local data = {'No Build Messages'}
+        vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, data)
     end
 
-    if error_win ~= nil then
+    local validWin = (error_win ~= nil) and (vim.api.nvim_win_is_valid(error_win))
+    if validWin then
         return;
     end
 
@@ -39,9 +43,12 @@ end
 
 local function close_error_win()
     if error_win == nil then
-        return 
+        return
     end
-    vim.api.nvim_win_close(error_win, true)
+    local validWin = vim.api.nvim_win_is_valid(error_win)
+    if validWin then
+        vim.api.nvim_win_close(error_win, true)
+    end
     error_win = nil;
 end
 
@@ -53,6 +60,12 @@ function Toggle_error_win()
     end
 end
 
+local function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
 local function stderr_callback(jobid, data, event)
     if data == nil then
         notif("null data")
@@ -62,10 +75,20 @@ local function stderr_callback(jobid, data, event)
         error_buffer = vim.api.nvim_create_buf(false, true)
         vim.api.nvim_buf_set_name(error_buffer, "Build Messages")
     end
-    vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, data)
-    -- vim.cmd('buffer ' .. error_buffer)
 
+    local elem = nil
+    elem = next(data)
+    if elem == nil then
+        return
+    end
+
+    if tablelength(data) == 1 then
+        return
+    end
+
+    vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, data)
     open_error_win()
+
 end
 
 
@@ -187,8 +210,11 @@ function SmartBuild()
     end
     build_command = prefix..build_command
     local function stdio_callback(jobid, data, event)
-        if data == nil then
+        if next(data) == nil then
             notif("null data")
+            return
+        end
+        if tablelength(data) == 1 then
             return
         end
         notif(data, "info", {title = build_command})
