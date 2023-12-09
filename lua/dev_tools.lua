@@ -38,6 +38,8 @@ local function open_error_win()
         height = height,
         border = 'double',
         zindex = nil,
+        title = 'Build Messages',
+        title_pos = 'center',
     })
 end
 
@@ -96,6 +98,9 @@ local function on_exit_callback(jobid, exit_code, event)
     if exit_code ~= 0 then
         notif("Build failed", "error")
     else
+        if error_buffer ~= nil then
+            vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, {})
+        end
         notif("Build succeeded")
     end
 end
