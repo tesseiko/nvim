@@ -8,6 +8,50 @@ vim.keymap.set('n', '<leader>b', function ()
 
 local notif = require("notify")
 local error_buffer = nil;
+local error_win = nil;
+
+local function open_error_win()
+    if error_buffer == nil then
+        return;
+    end
+
+    if error_win ~= nil then
+        return;
+    end
+
+    local width = math.ceil(math.min(vim.o.columns, math.max(80, vim.o.columns - 20)))
+    local height = math.ceil(math.min(vim.o.lines, math.max(20, vim.o.lines - 10)))
+
+    local row = math.ceil(vim.o.lines - height) * 0.5 - 1
+    local col = math.ceil(vim.o.columns - width) * 0.5 - 1
+
+    error_win = vim.api.nvim_open_win(error_buffer, true, {
+        row = row,
+        col = col,
+        relative = "editor",
+        style = "minimal",
+        width = width,
+        height = height,
+        border = 'double',
+        zindex = nil,
+    })
+end
+
+local function close_error_win()
+    if error_win == nil then
+        return 
+    end
+    vim.api.nvim_win_close(error_win, true)
+    error_win = nil;
+end
+
+function Toggle_error_win()
+    if error_win == nil then
+        open_error_win()
+    else
+        close_error_win()
+    end
+end
 
 local function stderr_callback(jobid, data, event)
     if data == nil then
@@ -15,12 +59,15 @@ local function stderr_callback(jobid, data, event)
         return
     end
     if error_buffer == nil then
-        error_buffer = vim.api.nvim_create_buf(true, true)
+        error_buffer = vim.api.nvim_create_buf(false, true)
         vim.api.nvim_buf_set_name(error_buffer, "Build Messages")
     end
     vim.api.nvim_buf_set_lines(error_buffer, 0, -1, true, data)
-    vim.cmd('buffer ' .. error_buffer)
+    -- vim.cmd('buffer ' .. error_buffer)
+
+    open_error_win()
 end
+
 
 local function on_exit_callback(jobid, exit_code, event)
     if exit_code ~= 0 then
@@ -33,7 +80,7 @@ end
 function SmartBuild()
 
     local build_command = ""
-    local make_options = "-j4"
+    local make_options = "-j3"
 
     local doBear = false
 
@@ -159,3 +206,4 @@ function SmartBuild()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua SmartBuild()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>tm", "<cmd>lua Toggle_error_win()<CR>", {noremap = true, silent = true})

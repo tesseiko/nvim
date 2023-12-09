@@ -35,7 +35,7 @@ vim.keymap.set('n', '<leader>?', ':tabnew ~/vimwiki/src/vim.md<cr>', opts)
 vim.keymap.set('n', '<leader>rc', ':tabnew ~/.config/nvim/init.lua<cr>', opts)
 vim.keymap.set('n', '<C-n>', ':bnext<cr>', opts)
 vim.keymap.set('n', '<C-p>', ':bprev<cr>', opts)
-vim.keymap.set('n', '<C-q>', ':b#<bar>bd#<cr>', opts)
+vim.keymap.set('n', '<C-q>', ':b#<bar>:bd! #<bar>:bnext<bar>:bprev<bar>:<cr>', opts)
 
 -- etc
 vim.keymap.set('n', '<leader>M', '/<@><cr>', opts)
