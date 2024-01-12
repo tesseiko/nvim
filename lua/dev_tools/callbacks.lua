@@ -48,7 +48,7 @@ function M.get_stdio_callback(build_command)
             notif("null data")
             return
         end
-        if utils.tablelength(data) == 1 then
+        if tablelength(data) == 1 then
             return
         end
         notif(data, "info", {title = build_command})
