@@ -36,9 +36,9 @@ end
 
 function M.on_exit_callback(jobid, exit_code, event)
     if exit_code ~= 0 then
-        notif("Build failed", "error")
+        notif("Build failed", "error", {timeout = false})
     else
-        notif("Build succeeded")
+        notif("Build succeeded", "info", {timeout = false})
     end
 end
 
