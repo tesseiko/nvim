@@ -4,23 +4,23 @@ M.error_buffer = nil;
 
 local function highlight_error_lines()
 
-local pattern1 = 'error'
-local pattern2 = 'Error'
+    local pattern1 = 'error'
+    local pattern2 = 'Error'
 
--- Get the current buffer
-local bufnr = M.error_buffer
+    -- Get the current buffer
+    local bufnr = M.error_buffer
 
--- Search for the pattern in the buffer and highlight the matches
-for lineNo, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
-  local match_start, match_end = string.find(line, pattern1)
-  if match_start then
-    vim.api.nvim_buf_add_highlight(bufnr, -1, "Error", lineNo - 1, match_start - 1, match_end)
-  end
-  match_start, match_end = string.find(line, pattern2)
-  if match_start then
-    vim.api.nvim_buf_add_highlight(bufnr, -1, "Error", lineNo - 1, match_start - 1, match_end)
-  end
-end
+    -- Search for the pattern in the buffer and highlight the matches
+    for lineNo, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
+        local match_start, match_end = string.find(line, pattern1)
+        if match_start then
+            vim.api.nvim_buf_add_highlight(bufnr, -1, "Error", lineNo - 1, match_start - 1, match_end)
+        end
+        match_start, match_end = string.find(line, pattern2)
+        if match_start then
+            vim.api.nvim_buf_add_highlight(bufnr, -1, "Error", lineNo - 1, match_start - 1, match_end)
+        end
+    end
 end
 
 local function open_error_win()
