@@ -38,6 +38,9 @@ function M.on_exit_callback(jobid, exit_code, event)
     if exit_code ~= 0 then
         notif("Build failed", "error", {timeout = false})
     else
+        if utils.error_buffer ~= nil then
+            vim.api.nvim_buf_set_lines(utils.error_buffer, 0, -1, true, {})
+        end
         notif("Build succeeded", "info", {timeout = false})
     end
 end

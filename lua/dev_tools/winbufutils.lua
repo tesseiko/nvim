@@ -30,6 +30,8 @@ local function open_error_win()
         height = height,
         border = 'double',
         zindex = nil,
+        title = 'Build Messages',
+        title_pos = 'center',
     })
 end
 
