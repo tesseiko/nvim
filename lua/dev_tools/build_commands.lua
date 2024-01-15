@@ -1,6 +1,5 @@
 local callback = require('dev_tools.callbacks')
 local notif = require("notify")
-local utils = require('dev_tools.winbufutils')
 
 local function init_bear_prefix()
     if os.execute('bear --version > /dev/null') == 0 then
