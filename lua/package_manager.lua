@@ -16,8 +16,12 @@ require('packer').startup(function(use)
 
 
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-	use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built. 
+    -- Only load if `make` is available
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
     use {
