@@ -7,3 +7,4 @@ require("dev_tools")
 require("settings")
 require("desktop")
 
+vim.api.nvim_set_keymap("n", "<leader>nr", "<cmd>luafile $MYVIMRC<CR>", {noremap = true, silent = true})

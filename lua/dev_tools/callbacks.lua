@@ -2,6 +2,7 @@
 local M = {}
 local notif = require("notify")
 local utils = require('dev_tools.winbufutils')
+local job_control = require('dev_tools.job_control')
 
 local function tablelength(T)
   local count = 0
@@ -30,17 +31,20 @@ function M.stderr_callback(jobid, data, event)
     end
 
     vim.api.nvim_buf_set_lines(utils.error_buffer, 0, -1, true, data)
+    job_control.set_messages(jobid, data)
     utils.open_error_win()
 
 end
 
 function M.on_exit_callback(jobid, exit_code, event)
     if exit_code ~= 0 then
+        job_control.set_status(jobid, "failed")
         notif("Build failed", "error", {timeout = false})
     else
         if utils.error_buffer ~= nil then
             vim.api.nvim_buf_set_lines(utils.error_buffer, 0, -1, true, {})
         end
+        job_control.set_status(jobid, "succeded")
         notif("Build succeeded", "info", {timeout = false})
     end
 end
@@ -55,6 +59,7 @@ function M.get_stdio_callback(build_command)
             return
         end
         notif(data, "info", {title = build_command})
+        job_control.append_messages(jobid, data)
     end
     return stdio_callback
 end

@@ -36,8 +36,9 @@ end
 local M = {}
 
 function M.get_build_command()
+    notif.dismiss({})
     local build_command = ""
-    local make_options = "-j3"
+    local make_options = "-j2"
     local doBear = init_bear_prefix()
     local onExit = callback.on_exit_callback
 
