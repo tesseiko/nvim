@@ -10,7 +10,7 @@ local function tablelength(T)
   return count
 end
 
-function M.stderr_callback(jobid, data, event)
+function M.stderr_callback(jobid, data, _)
     if data == nil then
         notif("null data")
         return
@@ -36,7 +36,7 @@ function M.stderr_callback(jobid, data, event)
 
 end
 
-function M.on_exit_callback(jobid, exit_code, event)
+function M.on_exit_callback(jobid, exit_code, _)
     if exit_code ~= 0 then
         job_control.set_status(jobid, "failed")
         notif("Build failed", "error", {timeout = false})
@@ -49,8 +49,25 @@ function M.on_exit_callback(jobid, exit_code, event)
     end
 end
 
+function M.get_on_exit_callback(success_status)
+    local function on_exit_callback(jobid, exit_code, _)
+        notif.dismiss({})
+        if exit_code ~= 0 then
+            job_control.set_status(jobid, "failed")
+            notif("Build failed", "error", {timeout = false})
+        else
+            if utils.error_buffer ~= nil then
+                vim.api.nvim_buf_set_lines(utils.error_buffer, 0, -1, true, {})
+            end
+            job_control.set_status(jobid, "succeded")
+            notif("Build succeeded", success_status, {timeout = false})
+        end
+    end
+    return on_exit_callback
+end
+
 function M.get_stdio_callback(build_command)
-    local function stdio_callback(jobid, data, event)
+    local function stdio_callback(jobid, data, _)
         if next(data) == nil then
             notif("null data")
             return

@@ -22,7 +22,7 @@ local function get_projucer_commmand()
 
     local projucerCMD = 'Projucer --resave '..jucer_file
 
-    return projucerCMD, SmartBuild
+    return projucerCMD
 end
 
 local function check_projucer_need_to_run()
@@ -37,10 +37,11 @@ local M = {}
 
 function M.get_build_command()
     notif.dismiss({})
+
     local build_command = ""
     local make_options = "-j2"
     local doBear = init_bear_prefix()
-    local onExit = callback.on_exit_callback
+    local on_exit_notification_status = "info"
 
     local pwd_cmd=io.popen("pwd")
     if pwd_cmd == nil then
@@ -66,7 +67,9 @@ function M.get_build_command()
     elseif os.execute('[ -f *.jucer ]') == 0 then
         notif("juce framework detected")
         if check_projucer_need_to_run() then
-            build_command, onExit = get_projucer_commmand()
+            build_command = get_projucer_commmand()
+            on_exit_notification_status = "warn"
+            doBear = false
         else
             if os.execute('[ -f Builds/LinuxMakefile/compile_commands.json ]') == 0 then
                 doBear = false
@@ -124,7 +127,7 @@ function M.get_build_command()
         stderr_buffered = true,
         on_stdout = callback.get_stdio_callback(build_command),
         on_stderr = callback.stderr_callback,
-        on_exit = onExit
+        on_exit = callback.get_on_exit_callback(on_exit_notification_status)
     }
 
     return build_command, job_options

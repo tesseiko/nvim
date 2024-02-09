@@ -13,12 +13,12 @@ function Toggle_error_win()
 end
 
 
-function Telescope_kill_job()
-    job_control.Telescope_kill_job()
+function Telescope_build_jobs()
+    job_control.Telescope_build_jobs()
 end
 
 
 vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua SmartBuild()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tm", "<cmd>lua Toggle_error_win()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Telescope_kill_job()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Telescope_build_jobs()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>so %<CR>", {noremap = true, silent = true})
