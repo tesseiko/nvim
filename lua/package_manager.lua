@@ -105,6 +105,8 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-notify'
     use 'simrat39/symbols-outline.nvim'
 
+    use 'MunifTanjim/nui.nvim'
+
 	if is_bootstrap then
 		require('packer').sync()
 	end

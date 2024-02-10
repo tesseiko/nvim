@@ -91,7 +91,7 @@ function M.Telescope_build_jobs()
     attach_mappings = function(_, map)
       map('i', '<CR>', show_build_messages)
       map('n', '<CR>', show_build_messages)
-      map('n', 'k', kill_and_delete_job)
+      map('n', 'C-k', kill_and_delete_job)
       map('i', '<C-k>', kill_and_delete_job)
       return true
     end,

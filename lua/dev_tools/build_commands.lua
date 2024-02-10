@@ -20,7 +20,7 @@ local function get_projucer_commmand()
     lala:close()
     notif("Resaving Projucer")
 
-    local projucerCMD = 'Projucer --resave '..jucer_file
+    local projucerCMD = 'Projucer --resave "'..jucer_file..'"'
 
     return projucerCMD
 end

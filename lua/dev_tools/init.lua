@@ -21,4 +21,4 @@ end
 vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua SmartBuild()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tm", "<cmd>lua Toggle_error_win()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Telescope_build_jobs()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>so %<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>so %<CR>", {noremap = true})
