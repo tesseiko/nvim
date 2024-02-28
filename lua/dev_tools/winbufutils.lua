@@ -6,7 +6,7 @@ M.error_buffer = nil;
 local function double_pattern_highlight(bufnr, pattern1, pattern2, hlgroup)
     -- Search for the pattern in the buffer and highlight the matches
     for lineNo, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
-        local match_start, match_end = string.find(line, pattern1)
+        local match_start, match_end = string.find(line, pattern1, 1, false)
         if match_start then
             vim.api.nvim_buf_add_highlight(bufnr, -1, hlgroup, lineNo - 1, match_start - 1, match_end)
         end
@@ -30,7 +30,7 @@ local function highlight_error_lines()
     double_pattern_highlight(bufnr, "error", "Error", "Error")
     double_pattern_highlight(bufnr, "warning", "Warning", "Warning")
     double_pattern_highlight(bufnr, "note", "Note", "Note")
-    double_pattern_highlight(bufnr, "~", "^", "Underline")
+    double_pattern_highlight(bufnr, "dummy", "~*%^~+", "Underline")
 end
 
 local function getCenterLayout()
@@ -55,9 +55,9 @@ local function open_error_win(layout)
 
     local hl_ns = vim.api.nvim_create_namespace("ErrorWin")
     vim.api.nvim_set_hl(hl_ns, 'Warning', { fg = "#deaf42", bold = true })
-    vim.api.nvim_set_hl(hl_ns, 'Error', { fg = "#aa0000", bold = true })
+    vim.api.nvim_set_hl(hl_ns, 'Error', { fg = "#ff0000", bold = true })
     vim.api.nvim_set_hl(hl_ns, 'Note', { fg = "#00a075", bold = true })
-    vim.api.nvim_set_hl(hl_ns, 'Underline', { fg = "#ff0000", bold = true })
+    vim.api.nvim_set_hl(hl_ns, 'Underline', { fg = "#aa0000", bold = true })
 
     if M.error_buffer == nil then
         M.error_buffer = vim.api.nvim_create_buf(false, true)
