@@ -2,6 +2,20 @@ local M = {}
 M.error_win = nil;
 M.error_buffer = nil;
 
+local function double_pattern_highlight_above(bufnr, pattern1, pattern2, hlgroup)
+    -- Search for the pattern in the buffer and highlight the matches
+    for lineNo, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
+        local match_start, match_end = string.find(line, pattern1, 1, false)
+        if match_start then
+            vim.api.nvim_buf_add_highlight(bufnr, -1, hlgroup, lineNo - 2, match_start - 1, match_end)
+        end
+        match_start, match_end = string.find(line, pattern2)
+        if match_start then
+            vim.api.nvim_buf_add_highlight(bufnr, -1, hlgroup, lineNo - 2, match_start - 1, match_end)
+        end
+    end
+end
+
 
 local function double_pattern_highlight(bufnr, pattern1, pattern2, hlgroup)
     -- Search for the pattern in the buffer and highlight the matches
@@ -17,7 +31,7 @@ local function double_pattern_highlight(bufnr, pattern1, pattern2, hlgroup)
     end
 end
 
-local function highlight_error_lines()
+local function highlight_error_window()
 
     local pattern1 = 'error'
     local pattern2 = 'Error'
@@ -30,7 +44,8 @@ local function highlight_error_lines()
     double_pattern_highlight(bufnr, "error", "Error", "Error")
     double_pattern_highlight(bufnr, "warning", "Warning", "Warning")
     double_pattern_highlight(bufnr, "note", "Note", "Note")
-    double_pattern_highlight(bufnr, "dummy", "~*%^~+", "Underline")
+    double_pattern_highlight(bufnr, "%^", "~*%^~+", "Underline")
+    double_pattern_highlight_above(bufnr, "%^", "~*%^~+", "ErrorString")
 end
 
 local function getCenterLayout()
@@ -51,13 +66,26 @@ local function getTopRightLayout()
     return width, height, row, col
 end
 
+local function close_error_win()
+    if M.error_win == nil then
+        return
+    end
+    local validWin = vim.api.nvim_win_is_valid(M.error_win)
+    if validWin then
+        vim.api.nvim_win_close(M.error_win, true)
+    end
+    M.error_win = nil;
+end
+
 local function open_error_win(layout)
 
+    close_error_win()
     local hl_ns = vim.api.nvim_create_namespace("ErrorWin")
     vim.api.nvim_set_hl(hl_ns, 'Warning', { fg = "#deaf42", bold = true })
     vim.api.nvim_set_hl(hl_ns, 'Error', { fg = "#ff0000", bold = true })
     vim.api.nvim_set_hl(hl_ns, 'Note', { fg = "#00a075", bold = true })
     vim.api.nvim_set_hl(hl_ns, 'Underline', { fg = "#aa0000", bold = true })
+    vim.api.nvim_set_hl(hl_ns, 'ErrorString', { bg = "#ffaaaa", fg = "#000000", bold = false })
 
     if M.error_buffer == nil then
         M.error_buffer = vim.api.nvim_create_buf(false, true)
@@ -68,6 +96,9 @@ local function open_error_win(layout)
 
     local validWin = (M.error_win ~= nil) and (vim.api.nvim_win_is_valid(M.error_win))
     if validWin then
+        vim.api.nvim_win_set_hl_ns(M.error_win, hl_ns)
+        vim.api.nvim_buf_set_option(M.error_buffer, "filetype", "yaml")
+        highlight_error_window()
         return;
     end
 
@@ -98,18 +129,7 @@ local function open_error_win(layout)
     })
     vim.api.nvim_win_set_hl_ns(M.error_win, hl_ns)
     vim.api.nvim_buf_set_option(M.error_buffer, "filetype", "yaml")
-    highlight_error_lines()
-end
-
-local function close_error_win()
-    if M.error_win == nil then
-        return
-    end
-    local validWin = vim.api.nvim_win_is_valid(M.error_win)
-    if validWin then
-        vim.api.nvim_win_close(M.error_win, true)
-    end
-    M.error_win = nil;
+    highlight_error_window()
 end
 
 function M.open_error_win(layout)
