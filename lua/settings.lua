@@ -27,6 +27,7 @@ set guicursor=
 set foldmethod=syntax
 set foldlevelstart=30
 hi Folded ctermbg=0
+set foldexpr=nvim_treesitter#foldexpr()
 set smartindent
 set formatoptions+=actw
 set breakindent
