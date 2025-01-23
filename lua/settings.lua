@@ -24,7 +24,7 @@ set secure
 set rnu
 set nu
 set guicursor=
-set foldmethod=syntax
+set foldmethod=expr
 set foldlevelstart=30
 hi Folded ctermbg=0
 set foldexpr=nvim_treesitter#foldexpr()
