@@ -1,8 +1,8 @@
 local opts = { noremap=true, silent=true }
 
 vim.keymap.set('n', 'Y', 'y$'   , opts)
-vim.keymap.set('n', 'n', 'nzzzv', opts)
-vim.keymap.set('n', 'N', 'Nzzzv', opts)
+vim.keymap.set('n', 'n', 'nzz', opts)
+vim.keymap.set('n', 'N', 'Nzz', opts)
 vim.keymap.set('n', 'J', 'm`J``', opts)
 
 vim.keymap.set('v', '<leader>i', '<C-a>'  ,opts)

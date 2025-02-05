@@ -7,9 +7,22 @@ lsp.preset('recommended')
 lsp.configure('lua_ls', {
     settings = {
         Lua = {
+            workspace = {
+                library = {
+                    '/usr/share/nvim/runtime/lua',
+                    '/usr/share/nvim/runtime/lua/lsp',
+                    '/usr/share/awesome/lib'
+                }            },
             diagnostics = {
-                globals = { 'vim' }
-            }
+                globals = { "vim",
+                    "awesome",
+                    "awful",
+                    "client",
+                    "screen",
+                    "tag",
+                    "root",}
+            },
+            runtime = { version = 'LuaJIT' },
         }
     }
 })
