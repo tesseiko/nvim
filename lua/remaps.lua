@@ -57,8 +57,8 @@ vim.keymap.set('i', '<C-s>', '<esc>:w<cr>', opts)
 vim.keymap.set('n', '<leader>lq', ':LspStop<cr>', opts)
 
 -- surround current line with empty lines and reverse
-vim.keymap.set('n', 'noremap', '<leader>s O<esc>jo<esc>k', opts)
-vim.keymap.set('n', 'noremap', '<leader>S kddjddk', opts)
+vim.keymap.set('n', '<leader>s', 'O<esc>jo<esc>k', opts)
+vim.keymap.set('n', '<leader>S', 'kddjddk', opts)
 
 
 if vim.api.nvim_win_get_option(0, "diff") then
