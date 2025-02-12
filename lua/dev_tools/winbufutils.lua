@@ -77,6 +77,17 @@ local function close_error_win()
     M.error_win = nil;
 end
 
+local function close_scratch_win()
+    if M.scratch_win == nil then
+        return
+    end
+    local validWin = vim.api.nvim_win_is_valid(M.scratch_win)
+    if validWin then
+        vim.api.nvim_win_close(M.scratch_win, true)
+    end
+    M.scratch_win = nil;
+end
+
 local function open_error_win(layout)
 
     close_error_win()
@@ -132,6 +143,51 @@ local function open_error_win(layout)
     highlight_error_window()
 end
 
+local function open_scratch_win(layout)
+
+    close_scratch_win()
+
+    if M.scratch_buffer == nil then
+        M.scratch_buffer = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_buf_set_name(M.scratch_buffer, "Notes")
+        local data = {''}
+        vim.api.nvim_buf_set_lines(M.scratch_buffer, 0, -1, true, data)
+    end
+
+    local validWin = (M.scratch_win ~= nil) and (vim.api.nvim_win_is_valid(M.scratch_win))
+    if validWin then
+        vim.api.nvim_buf_set_option(M.scratch_buffer, "filetype", "nofile")
+        return;
+    end
+
+    local w, h, r, c
+    -- local w, h, r, c = getCenterLayout()
+    if layout == 'center' then
+        w, h, r, c = getCenterLayout()
+    else
+         w, h, r, c = getTopRightLayout()
+    end
+    -- local width = math.ceil(math.min(vim.o.columns, math.max(80, vim.o.columns - 20)))
+    -- local height = math.ceil(math.min(vim.o.lines, math.max(20, vim.o.lines - 10)))
+
+    -- local row = math.ceil(vim.o.lines - height) * 0.5 - 1
+    -- local col = math.ceil(vim.o.columns - width) * 0.5 - 1
+
+    M.scratch_win = vim.api.nvim_open_win(M.scratch_buffer, true, {
+        row = r,
+        col = c,
+        relative = "editor",
+        style = "minimal",
+        width = w,
+        height = h,
+        border = 'double',
+        zindex = nil,
+        title = 'Notes',
+        title_pos = 'center',
+    })
+    vim.api.nvim_buf_set_option(M.scratch_buffer, "filetype", "nofile")
+end
+
 function M.open_error_win(layout)
     open_error_win(layout)
 end
@@ -148,4 +204,19 @@ function M.toggle_error_win(layout)
     end
 end
 
+function M.open_scratch_win(layout)
+    open_scratch_win(layout)
+end
+
+function M.close_scratch_win()
+    close_scratch_win()
+end
+
+function M.toggle_scratch_win(layout)
+    if M.scratch_win == nil then
+        open_scratch_win(layout)
+    else
+        close_scratch_win()
+    end
+end
 return M

@@ -16,6 +16,9 @@ function Toggle_error_win_side()
     require('dev_tools.winbufutils').toggle_error_win("top_right")
 end
 
+function Toggle_scratch_win_side()
+    require('dev_tools.winbufutils').toggle_scratch_win("top_right")
+end
 
 
 function Telescope_build_jobs()
@@ -26,6 +29,7 @@ end
 vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua SmartBuild()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tr", "<cmd>lua Toggle_error_win_center()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tm", "<cmd>lua Toggle_error_win_side()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>tn", "<cmd>lua Toggle_scratch_win_side()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tk", "<cmd>lua Telescope_build_jobs()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>so %<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "]e", "/error<CR>", {noremap = true, silent = true})
