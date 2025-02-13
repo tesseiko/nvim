@@ -100,7 +100,11 @@ require('packer').startup(function(use)
             "kyazdani42/nvim-web-devicons", -- optional, for file icons
         },
     })
+
+    -- themes
     use 'Mofiqul/dracula.nvim'
+    use { "ellisonleao/gruvbox.nvim" }
+
     use 'rcarriga/nvim-notify'
     use 'simrat39/symbols-outline.nvim'
 

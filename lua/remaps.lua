@@ -1,8 +1,8 @@
 local opts = { noremap=true, silent=true }
 
 vim.keymap.set('n', 'Y', 'y$'   , opts)
-vim.keymap.set('n', 'n', 'nzz', opts)
-vim.keymap.set('n', 'N', 'Nzz', opts)
+vim.keymap.set('n', 'n', 'nzzzv', opts)
+vim.keymap.set('n', 'N', 'Nzzzv', opts)
 vim.keymap.set('n', 'J', 'm`J``', opts)
 
 vim.keymap.set('v', '<leader>i', '<C-a>'  ,opts)
@@ -19,6 +19,13 @@ vim.keymap.set('n', '<leader>k', ':m .-2<cr>==', opts)
 vim.keymap.set('n', '<leader>j', ':m .+1<cr>==', opts)
 vim.keymap.set('v', 'K', ':m \'<-2<cr>gv=gv', opts)
 vim.keymap.set('v', 'J', ':m \'>+1<cr>gv=gv', opts)
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.cpp", "*.c", "*.h"},
+    callback = function(ev)
+        vim.keymap.set('i', ';', '<esc>A;', opts)
+    end
+})
 vim.keymap.set('i', '<C-l>', '<right>', opts)
 vim.keymap.set('i', '<C-j>', '<down>', opts)
 vim.keymap.set('i', '<C-k>', '<up>', opts)
@@ -44,7 +51,6 @@ vim.keymap.set('n', '<leader><C-h>', ':tabprev<cr>', opts)
 vim.keymap.set('n', '<leader><C-l>', ':tabnext<cr>', opts)
 vim.keymap.set('n', '-', '<C-W><', opts)
 vim.keymap.set('n', '+', '<C-W>>', opts)
-vim.keymap.set('i', ':w<cr>', '<esc>:w<cr>', opts)
 vim.keymap.set('t', '<esc><esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>', opts)
 vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
