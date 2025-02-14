@@ -55,7 +55,7 @@ let g:tex_flavor = 'latex'
 set undodir=~/.config/nvim/undodir
 set tags=./tags;
 
-colorscheme dracula
+" colorscheme dracula
 set cursorline
 hi Normal ctermbg=NONE
 hi CursorLine term=bold cterm=bold ctermbg=NONE guibg=NONE
