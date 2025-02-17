@@ -33,11 +33,7 @@ local function check_projucer_need_to_run()
     end
 end
 
-local M = {}
-
-function M.get_build_command()
-    notif.dismiss({})
-
+local function construct_build_command()
     local build_command = ""
     local make_options = "-j2"
     local doBear = init_bear_prefix()
@@ -116,11 +112,38 @@ function M.get_build_command()
         return nil, nil
     end
 
+    return build_command, dir, doBear, on_exit_notification_status
+end
+
+local M = {}
+
+function M.get_build_command()
+    notif.dismiss({})
+
+    local build_command, dir, doBear, on_exit_notification_status= construct_build_command()
+
     -- run build job
     if doBear then
-        prefix = "bear -- "..prefix
+        build_command = "bear -- "..build_command
     end
-    build_command = prefix..build_command
+
+    local job_options = {
+        cwd = dir,
+        stderr_buffered = true,
+        on_stdout = callback.get_stdio_callback(build_command),
+        on_stderr = callback.stderr_callback,
+        on_exit = callback.get_on_exit_callback(on_exit_notification_status)
+    }
+
+    return build_command, job_options
+end
+
+function M.get_clean_command()
+    notif.dismiss({})
+
+    local build_command, dir, _, on_exit_notification_status= construct_build_command()
+
+    build_command = build_command.." clean"
 
     local job_options = {
         cwd = dir,

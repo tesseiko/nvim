@@ -8,6 +8,14 @@ function SmartBuild()
     job_control.new_job({id = job, command = build_command})
 end
 
+function SmartClean()
+    local build_commands = require('dev_tools.build_commands')
+    local build_command, job_options = build_commands.get_clean_command()
+
+    local job = vim.fn.jobstart(build_command, job_options)
+    job_control.new_job({id = job, command = build_command})
+end
+
 function Toggle_error_win_center()
     require('dev_tools.winbufutils').toggle_error_win("center")
 end
@@ -27,6 +35,7 @@ end
 
 
 vim.api.nvim_set_keymap("n", "<leader>tb", "<cmd>lua SmartBuild()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>tc", "<cmd>lua SmartClean()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tr", "<cmd>lua Toggle_error_win_center()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tm", "<cmd>lua Toggle_error_win_side()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tn", "<cmd>lua Toggle_scratch_win_side()<CR>", {noremap = true, silent = true})
