@@ -30,7 +30,6 @@ require('packer').startup(function(use)
         end
     }
     use 'norcalli/nvim-colorizer.lua'
-    use {'stevearc/dressing.nvim'}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
