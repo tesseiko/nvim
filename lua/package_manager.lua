@@ -13,8 +13,6 @@ require('packer').startup(function(use)
 
 	-- Fuzzy Finder (files, lsp, etc)
 	use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-
-
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use {
         'nvim-lualine/lualine.nvim',
@@ -23,7 +21,6 @@ require('packer').startup(function(use)
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. 
     -- Only load if `make` is available
 	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
     use {
         'phaazon/mind.nvim',
         branch = 'v2.2',
@@ -56,42 +53,30 @@ require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		}
 	}
-	-- use { -- Autocompletion
-	-- 	'hrsh7th/nvim-cmp',
-	-- 	requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-	-- }
-
 	use { -- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
 			pcall(require('nvim-treesitter.install').update { with_sync = true })
 		end,
 	}
-
 	use { -- Additional text objects via treesitter
 		'nvim-treesitter/nvim-treesitter-textobjects',
 		after = 'nvim-treesitter',
 	}
-
 	use { -- Additional text objects via treesitter
 		'nvim-treesitter/nvim-treesitter-angular',
 		after = 'nvim-treesitter',
 	}
-
     use("nvim-treesitter/nvim-treesitter-context");
-
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
-
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
     }
-
     use { 'vimwiki/vimwiki' }
     use {'chipsenkbeil/vimwiki-server.nvim', tag = 'v0.1.0-alpha.5'}
     use {'akinsho/toggleterm.nvim'}
-
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'
     use({
@@ -100,14 +85,11 @@ require('packer').startup(function(use)
             "kyazdani42/nvim-web-devicons", -- optional, for file icons
         },
     })
-
     -- themes
     use 'Mofiqul/dracula.nvim'
     use { "ellisonleao/gruvbox.nvim" }
-
     use 'rcarriga/nvim-notify'
     use 'simrat39/symbols-outline.nvim'
-
     use 'MunifTanjim/nui.nvim'
     -- lazy.nvim
     use {
