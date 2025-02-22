@@ -26,6 +26,11 @@
       filters = {
           dotfiles = true,
       },
+      actions = {
+          open_file = {
+              quit_on_open = true,
+          },
+      },
   })
 
 vim.keymap.set('n', '<leader>E', [[:NvimTreeToggle<cr>]], {silent = true})
