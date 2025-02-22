@@ -1,10 +1,10 @@
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     -- theme = 'gruvbox_light',
-    theme = 'gruvbox_dark',
-    -- theme = 'gruvbox-material',
-    component_separators = '|',
+    -- theme = 'gruvbox_dark',
+        component_separators = '|',
+    theme = 'gruvbox-material',
     section_separators = '',
   },
 }
