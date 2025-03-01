@@ -69,6 +69,7 @@ require('packer').startup(function(use)
     use("nvim-treesitter/nvim-treesitter-context");
 	use ('theprimeagen/harpoon')
 	use 'tpope/vim-fugitive'
+	use 'airblade/vim-gitgutter'
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",

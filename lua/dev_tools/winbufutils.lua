@@ -138,6 +138,8 @@ local function open_error_win(layout)
         title = 'Build Messages',
         title_pos = 'center',
     })
+
+    vim.api.nvim_command('stopinsert')
     vim.api.nvim_win_set_hl_ns(M.error_win, hl_ns)
     vim.api.nvim_buf_set_option(M.error_buffer, "filetype", "yaml")
     highlight_error_window()
