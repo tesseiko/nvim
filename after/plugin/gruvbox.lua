@@ -3,7 +3,7 @@ require("gruvbox").setup({
   terminal_colors = false, -- add neovim terminal colors
   undercurl = true,
   underline = true,
-  bold = true,
+  bold = false,
   italic = {
     strings = true,
     emphasis = true,
@@ -21,7 +21,7 @@ require("gruvbox").setup({
   palette_overrides = {},
   overrides = {},
   dim_inactive = true,
-  transparent_mode = true,
+  transparent_mode = false,
 })
 vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")

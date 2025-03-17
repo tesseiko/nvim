@@ -35,7 +35,7 @@ end
 
 local function construct_build_command()
     local build_command = ""
-    local make_options = "-j2"
+    local make_options = "-j1"
     local doBear = init_bear_prefix()
     local on_exit_notification_status = "info"
 

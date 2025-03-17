@@ -52,6 +52,14 @@ require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		}
 	}
+
+    use 'mfussenegger/nvim-dap'
+
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+    }
+
 	use { -- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
 		run = function()

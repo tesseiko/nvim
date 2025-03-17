@@ -32,7 +32,7 @@ function M.stderr_callback(jobid, data, _)
 
     vim.api.nvim_buf_set_lines(utils.error_buffer, 0, -1, true, data)
     job_control.set_messages(jobid, data)
-    utils.open_error_win()
+    -- utils.open_error_win()
 
 end
 
