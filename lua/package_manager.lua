@@ -60,6 +60,11 @@ require('packer').startup(function(use)
         requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
     }
 
+    use {
+"rjay-babu/mason-nvim-dap.nvim",
+        requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" }
+    }
+
 	use { -- Highlight, edit, and navigate code
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
