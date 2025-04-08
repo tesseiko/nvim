@@ -80,7 +80,11 @@ require('packer').startup(function(use)
 		after = 'nvim-treesitter',
 	}
     use("nvim-treesitter/nvim-treesitter-context");
-	use ('theprimeagen/harpoon')
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    }
 	use 'tpope/vim-fugitive'
 	use 'airblade/vim-gitgutter'
     use {
