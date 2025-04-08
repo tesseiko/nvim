@@ -1,6 +1,28 @@
 local callback = require('dev_tools.callbacks')
 local notif = require("notify")
 
+-- loading config
+local conf_dir = os.getenv('XDG_CONFIG_HOME')
+local dev_conf_dir = conf_dir.."/leftools"
+
+local conf = {cores = '-j1'}
+
+local function loadConf()
+    local ts = loadfile(dev_conf_dir..'/devtools_conf.lua')
+    if ts then
+        local c = ts()
+        if c.cores then
+            conf.cores = c.cores
+        end
+        if c.config then
+            conf.config = c.config
+        end
+        if c.flags then
+            conf.flags = c.flags
+        end
+    end
+end
+
 local function init_bear_prefix()
     if os.execute('bear --version > /dev/null') == 0 then
         return true
@@ -34,8 +56,16 @@ local function check_projucer_need_to_run()
 end
 
 local function construct_build_command()
+    loadConf()
     local build_command = ""
-    local make_options = "-j1"
+    local make_options = conf.cores
+    local prefix = ""
+    if conf.config then
+        make_options = make_options.." CONFIG="..conf.config
+    end
+    if conf.flags then
+        make_options = make_options.." CFLAGS=-D"..conf.flags
+    end
     local doBear = init_bear_prefix()
     local on_exit_notification_status = "info"
 
@@ -46,7 +76,6 @@ local function construct_build_command()
     end
     local dir = pwd_cmd:read()
     pwd_cmd:close()
-    local prefix = ""
 
     if os.execute('[ -f platformio.ini ]') == 0 then
         notif("Building with platformio")
@@ -112,6 +141,7 @@ local function construct_build_command()
         return nil, nil
     end
 
+    build_command = prefix..build_command
     return build_command, dir, doBear, on_exit_notification_status
 end
 
