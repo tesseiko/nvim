@@ -13,12 +13,23 @@ local function loadConf()
         local c = ts()
         if c.cores then
             conf.cores = c.cores
+        else
+            conf.cores = nil
         end
         if c.config then
             conf.config = c.config
+        else
+            conf.config = nil
         end
         if c.flags then
             conf.flags = c.flags
+        else
+            conf.flags = nil
+        end
+        if c.opts then
+            conf.opts = c.opts
+        else
+            conf.opts = nil
         end
     end
 end
@@ -65,6 +76,9 @@ local function construct_build_command()
     end
     if conf.flags then
         make_options = make_options.." CFLAGS=-D"..conf.flags
+    end
+    if conf.opts then
+        make_options = make_options.." "..conf.opts.." "
     end
     local doBear = init_bear_prefix()
     local on_exit_notification_status = "info"
