@@ -31,11 +31,10 @@ require('packer').startup(function(use)
     }
     use 'norcalli/nvim-colorizer.lua'
 	use {
-		'VonHeikemen/lsp-zero.nvim',
+        'williamboman/mason.nvim',
 		requires = {
 			-- LSP Support
 			{'neovim/nvim-lspconfig'},
-			{'williamboman/mason.nvim'},
 			{'williamboman/mason-lspconfig.nvim'},
 
 			-- Autocompletion
@@ -61,8 +60,9 @@ require('packer').startup(function(use)
     }
 
     use {
-"rjay-babu/mason-nvim-dap.nvim",
-        requires = { "mfussenegger/nvim-dap", "williamboman/mason.nvim" }
+        "williamboman/mason.nvim",
+        "mfussenegger/nvim-dap",
+        "jay-babu/mason-nvim-dap.nvim",
     }
 
 	use { -- Highlight, edit, and navigate code
