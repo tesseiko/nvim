@@ -1,11 +1,11 @@
 vim.g.mapleader = ' '
-require("package_manager")
-require("completions")
-require("remaps")
-require("dev_tools")
+require("lef.package_manager")
+require("lef.completions")
+require("lef.remaps")
+require("lef.dev_tools")
 -- vim.cmd [[colorscheme dracula]]
-require("settings")
-require("desktop")
+require("lef.settings")
+require("lef.desktop")
 
 -- vim.o.background = "dark" -- or "light" for light mode
 -- vim.cmd([[colorscheme gruvbox]])

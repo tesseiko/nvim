@@ -1,8 +1,8 @@
 
 local M = {}
 local notif = require("notify")
-local utils = require('dev_tools.winbufutils')
-local job_control = require('dev_tools.job_control')
+local utils = require('lef.dev_tools.winbufutils')
+local job_control = require('lef.dev_tools.job_control')
 
 local function tablelength(T)
   local count = 0

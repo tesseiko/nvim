@@ -1,4 +1,4 @@
-local callback = require('dev_tools.callbacks')
+local callback = require('lef.dev_tools.callbacks')
 local notif = require("notify")
 
 -- loading config

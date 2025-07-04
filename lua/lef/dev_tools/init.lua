@@ -1,4 +1,4 @@
-local job_control = require('dev_tools.job_control')
+local job_control = require('lef.dev_tools.job_control')
 
 function SmartBuild()
     local build_commands = require('dev_tools.build_commands')

@@ -8,7 +8,7 @@
  ==============================================================================
  ]]
 local notif = require("notify")
-local utils = require('dev_tools.winbufutils')
+local utils = require('lef.dev_tools.winbufutils')
 local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local sorters = require('telescope.sorters')
