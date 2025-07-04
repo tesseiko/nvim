@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-require("lef.package_manager")
+-- require("lef.package_manager")
 require("lef.completions")
 require("lef.remaps")
 require("lef.dev_tools")
