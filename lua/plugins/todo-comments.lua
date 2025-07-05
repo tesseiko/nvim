@@ -1,5 +1,8 @@
+if true then
+  return {}
+end
 
-require("todo-comments").setup {
+require("todo-comments").setup({
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
   -- keywords recognized as todo comments
@@ -46,7 +49,7 @@ require("todo-comments").setup {
     info = { "DiagnosticInfo", "#2563EB" },
     hint = { "DiagnosticHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
-    test = { "Identifier", "#FF00FF" }
+    test = { "Identifier", "#FF00FF" },
   },
   search = {
     command = "rg",
@@ -62,7 +65,7 @@ require("todo-comments").setup {
     pattern = [[\b(KEYWORDS):]], -- ripgrep regex
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
-}
+})
 
 vim.keymap.set("n", "]t", function()
   require("todo-comments").jump_next()
@@ -72,4 +75,4 @@ vim.keymap.set("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
-vim.keymap.set("n", " tls",  [[:TodoTelescope<cr>]] , {})
+vim.keymap.set("n", " tls", [[:TodoTelescope<cr>]], {})

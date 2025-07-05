@@ -1,21 +1,24 @@
+if true then
+  return {}
+end
 local opts = {
   highlight_hovered_item = true,
   show_guides = true,
   auto_preview = false,
-  position = 'right',
+  position = "right",
   relative_width = true,
   width = 25,
   auto_close = false,
   show_numbers = false,
   show_relative_numbers = false,
   show_symbol_details = true,
-  preview_bg_highlight = 'FocusedSymbol',
+  preview_bg_highlight = "FocusedSymbol",
   autofold_depth = nil,
   auto_unfold_hover = true,
-  fold_markers = { '', '' },
+  fold_markers = { "", "" },
   wrap = true,
   keymaps = { -- These keymaps can be a string or a table for multiple keys
-    close = {"<Esc>", "q"},
+    close = { "<Esc>", "q" },
     goto_location = "<Cr>",
     focus_location = "o",
     hover_symbol = "<C-space>",
@@ -62,4 +65,4 @@ local opts = {
   },
 }
 require("symbols-outline").setup(opts)
-vim.keymap.set('n', '<leader>L', [[:SymbolsOutline<cr>]], {silent = true})
+vim.keymap.set("n", "<leader>L", [[:SymbolsOutline<cr>]], { silent = true })
