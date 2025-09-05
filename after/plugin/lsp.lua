@@ -47,6 +47,24 @@ lsp.config('pylsp', {
   }
 })
 
+lsp.config('clangd', {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=never",
+    "--completion-style=detailed"
+  },
+  settings = {
+    clangd = {
+      -- Example settings (adjust according to your needs)
+      fallbackFlags = { "-std=c++20" },  -- Default C++ standard
+      semanticHighlighting = true,
+      -- Add other clangd-specific settings here if needed
+    }
+  }
+})
+
 local pid = vim.fn.getpid()
 -- On linux/darwin if using a release build, otherwise under scripts/OmniSharp(.Core)(.cmd)
 local omnisharp_bin = "/home/lef/.local/share/nvim/mason/packages/omnisharp-mono/run"

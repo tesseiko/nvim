@@ -117,11 +117,12 @@ local function construct_build_command()
             end
 
             -- Ready to build
-            if os.execute('[ -f /bin/g++-11 ]') == 0 then
-                make_options=make_options.." CXX=/bin/g++-11"
-            elseif os.execute('[ -f /bin/g++-10 ]') == 0 then
-                make_options=make_options.." CXX=/bin/g++-10"
-            end
+            make_options=make_options.." CXXFLAGS=\"-include utility\""
+            -- if os.execute('[ -f /bin/g++-11 ]') == 0 then
+            --     make_options=make_options.." CXX=/bin/g++-11"
+            -- elseif os.execute('[ -f /bin/g++-10 ]') == 0 then
+            --     make_options=make_options.." CXX=/bin/g++-10"
+            -- end
 
             build_command="make "..make_options
             dir = dir..'/Builds/LinuxMakefile'
