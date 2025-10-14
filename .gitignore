@@ -2,3 +2,4 @@ plugin/packer_compiled.lua
 undodir/*
 .netrwhist
 
+lazy-lock.json

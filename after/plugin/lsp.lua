@@ -7,6 +7,8 @@ local nvimlsp = require('lspconfig')
 require("mason").setup()
 require("mason-nvim-dap").setup()
 
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 -- Fix Undefined global 'vim'
 lsp.config('lua_ls', {
     settings = {
@@ -26,6 +28,7 @@ lsp.config('lua_ls', {
                     "tag",
                     "root",}
             },
+            capabilities = capabilities,
             runtime = { version = 'LuaJIT' },
         }
     }
@@ -128,24 +131,24 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-
-cmp.setup({
-  mapping = {
-    -- Navigate between snippet placeholders
-    ['<C-f>'] = cmp.mapping(function()
-      if luasnip.jumpable(1) then
-        luasnip.jump(1)
-      end
-    end, { 'i', 's' }),
-    ['<C-b>'] = cmp.mapping(function()
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      end
-    end, { 'i', 's' }),
-  },
-})
+-- local cmp = require('cmp')
+-- local luasnip = require('luasnip')
+--
+-- cmp.setup({
+--   mapping = {
+--     -- Navigate between snippet placeholders
+--     ['<C-f>'] = cmp.mapping(function()
+--       if luasnip.jumpable(1) then
+--         luasnip.jump(1)
+--       end
+--     end, { 'i', 's' }),
+--     ['<C-b>'] = cmp.mapping(function()
+--       if luasnip.jumpable(-1) then
+--         luasnip.jump(-1)
+--       end
+--     end, { 'i', 's' }),
+--   },
+-- })
 
 -- local cmp_action = lsp.cmp_action()
 -- local cmp = require('cmp')
