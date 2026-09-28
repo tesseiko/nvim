@@ -17,7 +17,8 @@ function _fuzzydict_toggle()
   fuzzydict:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>lua _fuzzydict_toggle()<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ts", ":TermSelect<cr>", {noremap = true, silent = false})
+-- vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>lua _fuzzydict_toggle()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader><cr>", "<Esc><Cmd>ToggleTermToggleAll<CR>", {noremap = true, silent = true})
 

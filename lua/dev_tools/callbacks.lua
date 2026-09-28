@@ -37,6 +37,7 @@ function M.stderr_callback(jobid, data, _)
 end
 
 function M.on_exit_callback(jobid, exit_code, _)
+    notif.dismiss({})
     if exit_code ~= 0 then
         job_control.set_status(jobid, "failed")
         notif("Build failed", "error", {timeout = false})
@@ -75,6 +76,7 @@ function M.get_stdio_callback(build_command)
         if tablelength(data) == 1 then
             return
         end
+        notif.dismiss({})
         notif(data, "info", {title = build_command})
         job_control.append_messages(jobid, data)
     end
