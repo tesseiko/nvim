@@ -13,6 +13,7 @@ function M.choose_make_target(callback)
     return
   end
 
+  -- TODO: add "global makefiles" for building juce and other things
   local cmd = "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u"
 
   pickers.new({}, {
@@ -26,7 +27,7 @@ function M.choose_make_target(callback)
         
         -- selection[1] contains the actual string text of the target in Telescope
         if selection and selection[1] and selection[1] ~= "" then
-          callback(selection[1]) 
+          callback(selection[1])
         end
       end)
       return true

@@ -91,15 +91,19 @@ local function construct_build_command()
     local dir = pwd_cmd:read()
     pwd_cmd:close()
 
-    if os.execute('[ -f platformio.ini ]') == 0 then
-        notif("Building with platformio")
-        build_command = "platformio run"
-        if os.execute('[ -f compile_commands.json ]') == 0 then
-            doBear = false
-        end
-    elseif os.execute('[ -f Makefile ]') == 0 then
+    if os.execute('[ -f Makefile ]') == 0 then
         notif("Building with Makefile")
         build_command = "make "..make_options
+        if conf.config ~= "Release" then
+            doBear = true
+        end
+
+        -- if os.execute('[ -f compile_commands.json ]') == 0 then
+        --     doBear = true
+        -- end
+    elseif os.execute('[ -f platformio.ini ]') == 0 then
+        notif("Building with platformio")
+        build_command = "platformio run"
         if os.execute('[ -f compile_commands.json ]') == 0 then
             doBear = false
         end

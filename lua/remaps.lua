@@ -60,7 +60,10 @@ vim.keymap.set('n', '<C-j>', ':cnext<cr>', opts)
 vim.keymap.set('n', '<C-s>', ':w<cr>', opts)
 vim.keymap.set('i', '<C-s>', '<esc>:w<cr>', opts)
 
-vim.keymap.set('n', '<leader>lq', ':LspStop<cr>', opts)
+vim.keymap.set('n', '<leader>lq', ':lsp stop<cr>', opts)
+vim.keymap.set('n', '<leader>lw', ':lsp disable<cr>', opts)
+vim.keymap.set('n', '<leader>le', ':lsp enable<cr>', opts)
+vim.keymap.set('n', '<leader>lr', ':lsp restart<cr>', opts)
 
 -- surround current line with empty lines and reverse
 vim.keymap.set('n', '<leader>s', 'O<esc>jo<esc>k', opts)
