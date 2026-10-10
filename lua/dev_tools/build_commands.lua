@@ -94,8 +94,8 @@ local function construct_build_command()
     if os.execute('[ -f Makefile ]') == 0 then
         notif("Building with Makefile")
         build_command = "make "..make_options
-        if conf.config ~= "Release" then
-            doBear = true
+        if conf.config == "Release" then
+            doBear = false
         end
 
         -- if os.execute('[ -f compile_commands.json ]') == 0 then
