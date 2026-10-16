@@ -11,7 +11,7 @@ return{
                 -- Add languages to be installed here that you want installed for treesitter
                     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust' },
                 highlight = { enable = true },
-                indent = { enable = true, disable = { 'python' , 'cpp'} },
+                indent = { enable = true },
                 incremental_selection = {
                     enable = true,
                     keymaps = {
@@ -70,7 +70,7 @@ return{
     },
     {
         'nvim-treesitter/nvim-treesitter-context',
-        lazy = false;
+        lazy = false,
         opts = {
             enable = true,
             multiwindow = true,

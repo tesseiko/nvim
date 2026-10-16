@@ -7,10 +7,10 @@ function SmartBuildTarget()
     picker.choose_make_target(function(target)
         -- This block only executes if a valid target was chosen and confirmed
         local build_commands = require('dev_tools.build_commands')
-        local build_command, job_options = build_commands.get_build_command()
+        local build_command, job_options = build_commands.get_build_command(target)
 
         -- Append the target to the build command string
-        local final_command = build_command .. " " .. target
+        local final_command = build_command
 
         -- Start the job with the updated command string
         local job = vim.fn.jobstart(final_command, job_options)

@@ -166,10 +166,12 @@ end
 
 local M = {}
 
-function M.get_build_command()
+function M.get_build_command(target)
     notif.dismiss({})
 
     local build_command, dir, doBear, on_exit_notification_status= construct_build_command()
+
+    build_command = build_command .. " " .. target
 
     -- run build job
     if doBear then
