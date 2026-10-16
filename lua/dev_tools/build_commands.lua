@@ -171,7 +171,9 @@ function M.get_build_command(target)
 
     local build_command, dir, doBear, on_exit_notification_status= construct_build_command()
 
-    build_command = build_command .. " " .. target
+    if target then
+        build_command = build_command .. " " .. target
+    end
 
     -- run build job
     if doBear then
